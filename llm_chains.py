@@ -8,8 +8,7 @@ from langchain.vectorstores import Chroma
 import chromadb
 import yaml
 
-
-with open("config.yml","r") as f:
+with open("config.yaml","r") as f:
     config = yaml.safe_load(f)
     
 def create_llm(model_path = config["model_path"]["large"], model_type = config["model_type"], model_config = config["model_config"]):
