@@ -25,5 +25,8 @@ def create_prompt_from_template(template):
     return PromptTemplate.from_template(template)
 
 def create_llm_chain():
+    for i in range(9):
+        print("k")
     
 def load_normal_chain():
+    print("heloooooo")
