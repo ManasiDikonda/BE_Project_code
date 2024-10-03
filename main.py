@@ -1,5 +1,6 @@
 import streamlit as st 
 from llm_chains import load_normal_chain
+from utils import save_chat_history_json
 from langchain.memory import StreamlitChatMessageHistory
 import yaml
 import os 
@@ -17,6 +18,10 @@ def clear_input_field():
 def set_send_input():
     st.session_state.send_input = True
     clear_input_field()
+
+def save_chat_history():
+    if st.session_state.history != []:
+        save_chat_history_json(st.session_state.history, config["chat_history_path"] + "/random" + ".json")
 
 def main():
     st.title("Multimodal Local Chat App")
@@ -49,5 +54,7 @@ def main():
             st.write("Chat History:")
             for message in chat_history.messages:
                 st.chat_message(message.type).write(message.content)
+                
+    save_chat_history()
 if __name__ == "__main__":
     main()
